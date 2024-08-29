@@ -1,8 +1,8 @@
 {
   "name": "rempro-modular-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "api for rempro modular",
+  "author": "simbiedev",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
