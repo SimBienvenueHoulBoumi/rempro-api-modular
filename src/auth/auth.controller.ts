@@ -2,19 +2,25 @@ import {
   Body,
   Controller,
   Post,
-  Request,
   Get,
   HttpCode,
   HttpStatus,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthDto } from './dto/auth.dto';
 import { AuthGuard } from './auth.guard';
 import { UsersService } from 'src/users/users.service';
 
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+
+interface ResponseProfile {
+  user: CreateUserDto;
+  iat: string;
+  exp: string;
+}
 
 @Controller('auth')
 @ApiTags('auth')
@@ -31,10 +37,11 @@ export class AuthController {
     return this.authService.signIn(signInDto);
   }
 
-  @ApiOperation({ summary: 'Get user profile info' })
   @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @Get('profile')
-  getProfile(@Request() req) {
+  @ApiOperation({ summary: 'Get user profile info' })
+  getProfile(@Req() req: ResponseProfile) {
     return req.user;
   }
 

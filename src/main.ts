@@ -8,6 +8,7 @@ async function bootstrap() {
     .setTitle('REMPRO API')
     .setDescription('THE REMPRO API WITH MODULAR ARCHITECTURE')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
