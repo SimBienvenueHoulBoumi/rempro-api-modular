@@ -22,20 +22,6 @@ import { AuthGuard } from '../auth/auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @ApiOperation({ summary: 'Create a new user [role <user or admin>]' })
-  @Post(':role')
-  create(@Body() createUserDto: CreateUserDto, @Param('role') role: string) {
-    const validRoles = ['user', 'admin'];
-
-    if (!validRoles.includes(role.toLowerCase())) {
-      throw new BadRequestException(
-        `Invalid role: ${role}. Role must be either 'user' or 'admin'.`,
-      );
-    }
-
-    return this.usersService.create(createUserDto, role);
-  }
-
   @ApiOperation({ summary: 'Get all users' })
   @Get()
   findAll() {
