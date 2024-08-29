@@ -5,14 +5,11 @@ import {
   Patch,
   Param,
   Delete,
-  Post,
-  BadRequestException,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { CreateUserDto } from './dto/create-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('users')
