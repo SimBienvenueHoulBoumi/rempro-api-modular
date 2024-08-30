@@ -7,9 +7,10 @@ import { AnimeOrWebtoonVue } from './entities/anime-or-webtoon-vue.entity';
 import { Users } from '../users/entities/users.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { JwtService } from '@nestjs/jwt';
+import { UsersModule } from '../users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AnimeOrWebtoonVue, Users])],
+  imports: [UsersModule, TypeOrmModule.forFeature([AnimeOrWebtoonVue, Users])],
   controllers: [AnimeOrWebtoonVueController],
   providers: [AnimeOrWebtoonVueService, AuthGuard, JwtService],
 })

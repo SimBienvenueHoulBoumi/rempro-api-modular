@@ -15,7 +15,7 @@ interface Payload {
 }
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthAdminGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private usersService: UsersService,
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
 
       if (
         this.usersService.findOne(payload.sub) === null &&
-        (await this.usersService.findOne(payload.sub)).role !== 'user'
+        (await this.usersService.findOne(payload.sub)).role !== 'admin'
       ) {
         throw new UnauthorizedException();
       }
